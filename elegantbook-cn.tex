@@ -1,0 +1,1053 @@
+\documentclass[lang=cn,newtx,10pt,scheme=chinese]{elegantbook}
+
+\title{物理化学绝艺总纲}
+\subtitle{General Outline of Physical Chemistry}
+
+\author{Kimariyb}
+\date{\today}
+\version{1.0}
+
+
+
+\setcounter{tocdepth}{3}
+
+\logo{logo-blue.png}
+\cover{cover.jpg}
+
+% 本文档命令
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{mhchem}
+\usepackage[UTF8]{ctex}
+\newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
+
+% 修改标题页的橙色带
+\definecolor{customcolor}{RGB}{32,178,170}
+\colorlet{coverlinecolor}{customcolor}
+\usepackage{cprotect}
+
+\addbibresource[location=local]{reference.bib} % 参考文献，不要删除
+
+\begin{document}
+
+\maketitle
+\frontmatter
+\tableofcontents
+\mainmatter
+
+\chapter{物理化学入门知识}
+
+\section{物理量}
+\subsection{物理量的表示}
+在物理化学这一学科中，物理量一般是使用斜体来表示的。而每一个物理量都包含数值和单位两个部分，单位部分往往都是正体。例如某压力$p = 101.325$ kPa，其中$p$是物理量的符号，kPa是压力的单位，101.325 是物理量的数值。
+
+在排版中，物理量和变量的上标、下标都是用斜体来表示的，如摩尔等压热容$C_{p,\mathrm{m}}$，标准态用符号“$\ominus$”表示，如标准压力可以用$p^\ominus$表示。
+
+单位、名称、化学式和反应方程式、物质状态、算符都需要用正体表示，如m（摩尔）、r（反应）、vap（蒸发）、$\mathrm{H_2SO_4} $、aq（水溶液）、微分符号“d”、自然对数“ln”等等。
+
+\subsection{物理量的计算}
+在物理化学中，物理量的计算是重中之重，其往往是考试的核心。通过前面的内容我们知道一个物理量是由数值和单位组合而成的，因此我们在计算一个物理量时，也是单位的计算。要检验一个物理量计算的正不正确，除了数值上要计算正确以外，等式两边的单位也得一模一样。例如，计算在298 K下，100 kPa的理想气体的摩尔体积$V_\mathrm{m}$时，用方程表示为
+\begin{equation}
+V_\mathrm{m}=\frac{RT}{p}=\frac{8.314 \ \mathrm{J\cdot K^{-1}\cdot mol^{-1}} \times 298\ \mathrm{K}}{100\times 10^3\ \mathrm{Pa} }     
+\end{equation}
+
+在上式中，我们将所有的单位全部转化为了国际单位，这样做的好处是在计算时单位出错的概率极低，当然这样得到的结果也是国际单位。在物理化学中，如果没有特殊说明，通常计算的结果是保留四位有效数字的。
+\begin{equation}
+	V_\mathrm{m}=2.479\times 10^{-2} \ \mathrm{m^3\cdot mol^{-1}}=24.79\ \mathrm{dm^3\cdot mol^{-1}}  
+\end{equation}
+
+\section{数学基础}
+\subsection{微分}
+微分在物理化学中是一个很重要的运算，其与高中的函数求导运算是一样的，其中心思想就是无穷分割。例如在理想气体方程式中$pV=nRT$，通过移项可以知道$p=f(V, \ T)$，因此理想气体的压力$p$同时是体积$V$和温度$T$的函数，此时就需要使用偏微分和全微分的知识来处理。
+
+由上述可知，对于理想气体来说$p=f(V, \ T)$，通过全微分运算可以知道
+\begin{equation}
+	\mathrm{d}p=\left ( \frac{\partial p}{\partial T}  \right )_V\mathrm{d}T +\left ( \frac{\partial p}{\partial V}  \right )_T\mathrm{d}V
+\end{equation}
+在上式中，若保持压力$p$为常数，即$\mathrm{d}p=0$
+\begin{equation}
+	\left ( \frac{\partial p}{\partial T}  \right )_V\mathrm{d}T +\left ( \frac{\partial p}{\partial V}  \right )_T\mathrm{d}V=0
+\end{equation}
+移项后得到
+\begin{equation}
+	\left ( \frac{\partial p}{\partial T}  \right )_V=-\left ( \frac{\partial p}{\partial V}  \right )_T\left ( \frac{\partial V}{\partial T}  \right )_p  
+\end{equation}
+所以
+\begin{equation}
+	\left ( \frac{\partial p}{\partial T}  \right )_V \left ( \frac{\partial V}{\partial p}  \right )_T \left ( \frac{\partial T}{\partial V}  \right )_p = -1
+\end{equation}
+式（1.5）和（1.6）表示了三个偏微分之间的关系，在热力学证明中具有很重要的地位。
+
+\subsection{积分}
+积分是微分的逆运算，对于一个气体方程式$p(V-\alpha)=nRT$，由热力学基本方程$\mathrm{d}H=T\mathrm{d}S+V\mathrm{d}p$可以知道
+\begin{equation}
+	\left ( \frac{\partial H}{\partial p}  \right )_T=T\left ( \frac{\partial S}{\partial p}  \right )_T+V 
+\end{equation}
+由Maxwell关系式（之后会提到）知道
+\begin{equation}
+	\left ( \frac{\partial S}{\partial p}  \right )_T=-\left ( \frac{\partial V}{\partial T}  \right )_p 
+\end{equation}
+将式（1.8）带入式（1.7）中，可以得到
+\begin{equation}
+	\left ( \frac{\partial H}{\partial p}  \right )_T=-T \left ( \frac{\partial V}{\partial T}  \right )_p +V 
+\end{equation}
+从气体方程式可以知道式（1.9）中偏微分
+\begin{equation}
+	\left ( \frac{\partial V}{\partial T}  \right )_p=\frac{nR}{p} 
+\end{equation}
+将得到的偏微分带入式（1.9）中
+\begin{equation}
+	\left ( \frac{\partial H}{\partial p}  \right )_T=\alpha 
+\end{equation}
+此时，如果知道过程的压力变化以及常数$\alpha$的值，就可以通过积分，求出过程的焓变
+\begin{equation}
+	\Delta H=\int_{p_1}^{p_2} \alpha \mathrm{d}p=\alpha(p_2-p_1) 
+\end{equation}
+
+积分除了在热力学中使用广泛外，在动力学中更加重要，对于一个一级反应来说，对其动力学方程积分
+\begin{equation}
+	\int_{0}^{x} \frac{\mathrm{d}x }{a-x}=\int_{0}^{t}  k_1\mathrm{d}t 
+\end{equation}
+得到其定积分形式
+\begin{equation}
+	\mathrm{ln}\frac{a}{a-x}=k_1t  
+\end{equation}
+
+当然除了热力学和动力学以外，积分也在其他章节起着至关重要的作用。希望大家好好了解微分与积分，这些都是学习物理化学必备的数学基础。
+
+\subsection{完全微分}
+完全微分在物理化学中不如微分和积分重要，但是热力学中的Maxwell关系式的导出必须依靠完全微分，完全微分对于数学不理想的同学可能有点烧脑，这里用一个简单的例子说明。
+
+之前我们在回顾积分的知识时，使用了一个热力学基本方程，在这里我们要介绍另外一个热力学基本方程$\mathrm{d}G=-S\mathrm{d}T+V\mathrm{d}p$，我们分别对其在恒温下对压力求微分、恒压下对温度求微分，可以得到两个方程
+\begin{equation}
+	\begin{aligned}
+		\left ( \frac{\partial G}{\partial p}  \right )_T &= V 
+		\\[1.5ex]
+		\left ( \frac{\partial G}{\partial T}  \right )_p &= -S
+	\end{aligned}
+\end{equation}
+这两个方程分别是$V$和$S$的方程，如果我们将$V$和$S$看做是函数的因变量，并且$V$和$S$同时也是自变量$p$和$T$的函数，就可以在$V$做因变量时，恒温下对压力$p$求微分，在$S$做因变量时，恒压下对温度$T$求微分，这样得到的两组偏微分是相等的，这就是完全微分。
+\begin{equation}
+	\left ( \frac{\partial V}{\partial T}  \right )_p = -\left ( \frac{\partial S}{\partial p}  \right )_T
+\end{equation}
+得到的这一组关系是Maxwell关系式中的一组，其他的三组都是通过完全微分来推导的。
+
+\chapter{气体}
+\section{分子动理论与理想气体方程}
+\subsection{分子动理论}
+分子运动的微观模型为（1）气体是大量分子的集合体；（2）气体分子在不断的运动，呈均匀分布状态；（3）气体分子的碰撞是完全弹性的。
+
+在分子动理论中，压力$p$的定义是比较特殊的
+\begin{equation}
+	p=\frac{1}{3}mnu^2
+\end{equation}
+两边同时乘以$V$，得
+\begin{equation}
+	pV=\frac{1}{3}mNu^2
+\end{equation}
+需要注意的是，上式中的$u$代表的是根均方速率，$N$是在$V$中的总粒子数。
+\begin{equation}
+	\sqrt{\displaystyle \frac{\sum_{}^{} n_iu_i^2}{n} } =\sqrt{\frac{3kT}{m}}=u
+\end{equation}
+\subsection{压力和温度的统计概念}
+（1）\textbf{压力} \quad 是系统中大量微观粒子无规则的平均动量大小的宏观量度。压力$p$是大量分子集合所产生的总效应，是对单个分子运动统计平均的结果。对于一定量的气体，当温度和体积一定时，压力具有稳定的数值。
+
+（2）\textbf{温度} \quad 是系统中大量微观粒子无规则运动的平均平动能大小的量度。是描述系统冷热程度的量度，若两种气体的温度相同，则其平均平动能也相同。
+
+\subsection{理想气体方程}
+理想气体是一种很特殊的气体，在物理化学的学习中，如果没有特殊说明，所有气体一律按照理想气体处理。理想气体方程是描述理想气体状态的方程，在热力学、多组分、化学平衡中都有用处，其表述为
+\begin{equation}
+	pV=nRT=\frac{m}{M}RT=NkT
+\end{equation}
+式中$N$表示总的分子数，$k$为玻尔兹曼常数，$R$为摩尔气体常数，通常取8.314 $\mathrm{J \cdot mol^{-1} \cdot K^{-1}}$。
+
+从理想气体方程式可以推论出以下两个定律
+\begin{theorem}{Dalton分压定律}
+	在任何容器内的气体混合物中，在一定的温度下，如果各组分之间不发生化学反应，则每一种气体都均匀的分布在整个容器内，它所产生的压强和它单独占有整个容器时所产生的压强相同。
+	\begin{equation}
+		p_{\mathrm{B}}=py_{\mathrm{B}}
+	\end{equation}
+	式中$y_{\mathrm{B}}$为组分B的摩尔分数。
+\end{theorem}
+
+\begin{theorem}{Amagat分体积定律}
+	在一定的温度和压力下，混合气体的体积等于组成该混合气体的各组分的分体积之和。因此可以知道混合气体中各气体的体积分数就等于其摩尔分数。
+	\begin{equation}
+		V_{\mathrm{B}}=Vy_{\mathrm{B}}
+	\end{equation}
+	式中$y_{\mathrm{B}}$为组分B的摩尔分数。
+\end{theorem}
+
+\section{实际气体的液化与临界参数}
+
+\subsection{液体的饱和蒸汽压}
+理想气体在任何温度、任何压力下都不能够被液化，当实际气体在气-液平衡时，气体被称为饱和蒸气，液体被称为饱和液体。
+
+饱和蒸汽具有的压力称为饱和蒸气压，用$p^*$表示。当$p^*=p$时，液体沸腾，此时的温度称为液体的沸点$T_\mathrm{b}$。$p^* = 101.325$ kPa时的沸点称为正常沸点。在$T$一定时，如果物质B的分压$p_\mathrm{B}<p_\mathrm{B}^*$，液体B将蒸发为气体。需要注意的是，只有当温度一定时，才会有饱和蒸汽压；只有当压力一定时，才会有沸点。
+
+\subsection{临界参数}
+每一种液体都存在一个临界温度$T_\mathrm{c}$，当$T>T_\mathrm{c}$时，无论加多大的压力，都不可以使气体液化。临界温度以上不再有液体存在，所以饱和蒸气压$p^*=f(T)$的曲线终止于临界温度$T_\mathrm{c}$。$T_\mathrm{c}$时的饱和蒸气压称为临界压力$p_\mathrm{c}$。
+
+\textbf{临界温度：}使气体能够液化所允许的最高温度。\textbf{临界压力：}在临界温度$T_\mathrm{c}$下使气体液化所需的最低压力。\textbf{临界摩尔体积：}在临界温度、临界压力下物质的摩尔体积。以上三个参数统称为物质的临界常数。
+
+\subsection{实际气体的液化}
+实际气体液化的考察往往在于$T=T_\mathrm{c}$时，此时物质处于临界点，气、液两相摩尔体积及其他性质完全相同，相界面消失，此时有
+\begin{equation}
+	\begin{aligned}
+		\left ( \frac{\partial p}{\partial V_{\mathrm{m} }}  \right )_{T_\mathrm{c} } &= 0 \\[1.5ex]
+		\left ( \frac{\partial^2 p}{\partial V^2_{\mathrm{m} }}  \right )_{T_\mathrm{c} } &=0
+	\end{aligned}
+\end{equation}
+
+而当$T<T_{\mathrm{c}}$时，由于液体的不可压缩性，对其加压，对其体积的影响很小，换言之就是当$p$上升时，$V_\mathrm{m}$下降很小或者相当于不变。
+
+\section{实际气体的状态方程}
+\subsection{van der Waals 方程}
+理想气体的模型是分子间无作用力，分子自身无体积。而实际情况是气体既有分子间的作用力，也存在自身的体积，因此可以根据这两个性质来修正理想气体方程，van der Waals就提出了修正的方法。
+
+（1）\textbf{修正分子间有相互作用力} \quad 分子间相互作用减弱了分子对器壁的碰撞，这导致实际气体的压力是小于理想气体的压力的，所以需要人为的将理想气体方程中的$p$替换成实际气体的$p$加上某一个值，使其等于理想气体的$p_{\mathrm{id}}$。
+\begin{equation}
+	p_{\mathrm{id}} = p + \frac{a}{V^2_{\mathrm{m}}}
+\end{equation}
+
+（2）\textbf{矫正分子本身的体积} \quad 因为分子自身的体积是无法忽略的，其总会影响分子的自由移动，因此真实气体所能移动的空间是更小的。如果让真实气体的体积带入理想气体方程中的话，那就必须减去一个值，使其接近于理想气体的体积。
+\begin{equation}
+	V_{\mathrm{id, m}} = V_{\mathrm{m}}-b
+\end{equation}
+
+将修正后的体积和压力带入理想气体方程中，得
+\begin{equation}
+	\left ( p+\frac{a}{V^2_\mathrm{m} }  \right )\left ( V_\mathrm{m}-b  \right )  =RT
+\end{equation}
+式中$a$和$b$都是van der Waals 常数，其数值都是大于零的数。
+
+\subsection{实际气体压缩因子}
+由于实际气体是理想气体的偏差，因此定义一个压缩因子$Z$来描述实际气体偏离理想气体的程度：
+\begin{equation}
+	Z = \frac{pV}{nRT}=\frac{pV_{\mathrm{m}}}{RT}
+\end{equation}
+
+式（2.11）也可以改写成
+\begin{equation}
+	Z = \frac{V_\mathrm{re,m}}{V_\mathrm{id,m}}
+\end{equation}
+对于理想气体，$Z=1$。对于实际气体，若$Z<1$，说明它比理想气体容易压缩；若$Z>1$，说明它比理想气体难压缩。氢气难以压缩，其$Z>1$，其他的气体的$Z$随着压力的增加，先减小后增大，出现了一个凹形的曲线。
+
+任何一个气体都有一个特殊的温度——Boyle温度$T_\mathrm{B}$，在该温度下，压力趋于零时，$pV_\mathrm{m}-p$恒温线切线斜率为零。Boyle温度的定义为
+\begin{equation}
+	\lim_{p \to 0} \left \{ \frac{\partial (pV_\mathrm{m} )}{\partial p}  \right \}_{T_\mathrm{B} }=0
+\end{equation}
+当$T>T_\mathrm{B}$时，气体难以压缩，难以液化。
+
+实际气体的临界压缩因子$Z_\mathrm{c}$大多数为0.27 ~ 0.29。若是 van der Waals 气体，其临界压缩因子为$Z_\mathrm{c}=0.375$。
+
+\subsection{对应状态原理}
+由于认识到在临界点各种气体共同的特性，则以各自临界参数为基准，将气体的$p,V_\mathrm{m},T$做一番变化，得到
+\begin{equation}
+	\begin{aligned}
+		p_\mathrm{r} &= \frac{p}{p_\mathrm{c}} \\[1.5ex]
+		V_\mathrm{r} &= \frac{V_\mathrm{m}}{V_\mathrm{m,c}} \\[1.5ex]
+		T_\mathrm{r} &= \frac{T}{T_\mathrm{c}} 
+	\end{aligned}
+\end{equation}
+式中$p_\mathrm{r}$称为对比压力，$V_\mathrm{r}$称为对比体积，$T_\mathrm{r}$称为对比压力，它们反映了气体所处状态偏离临界点的倍数。
+
+\chapter{热力学基础}
+\section{热力学第一定律}
+\subsection{热力学基本概念}
+\textbf{1. 系统与环境}
+
+（1）\textbf{系统} \quad 在热力学中，首先要确定你所需要研究的对象，这个对象称为系统，系统的确定是人为的，可以是实际的也可以是抽象的。在热力学的学习过程中，确定一个系统是最重要的一环，没有搞清楚系统，其他的就无从谈起。
+
+（2）\textbf{环境} \quad 与系统密切相关、有相互作用且影响所能及的部分称为环境。
+
+根据系统与环境之间联系的情况不同，可以将系统分为:
+
+（1）\textbf{敞开系统} \quad 系统与环境之间既有物质交换，又有能量交换。
+
+（2）\textbf{封闭系统} \quad 系统与环境之间没有物质交换，但有能量交换。这是热力学研究的重点，考试中常见的系统都是封闭系统。
+
+（3）\textbf{孤立系统} \quad 系统与环境之间既没有物质交换，也没有能量交换。也可以称之为隔离系统。环境的改变不会对系统产生任何影响，绝热、恒容的封闭系统就是孤立系统。
+
+\textbf{2. 热力学变量}
+
+通常一个热力学系统的状态可以用宏观可测的性质比如体积、压力、温度等来表示。这些性质就是热力学变量，热力学变量可以分为两类。
+
+（1）\textbf{广度性质} \quad 广度性质又称为容量性质，它的数值与系统的物质的量成正比，比如体积、质量、热力学能等。这种性质有加和性。在数学上，广度性质是一次齐函数。
+
+（2）\textbf{强度性质} \quad 强度性质的数值取决于系统自身的特点，与系统的数量无关，不具有加和性，如温度、压力等。它在数学上是零次齐函数，指定了物质的量的广度性质就成为了强度性质，如摩尔体积。
+
+\textbf{3. 状态函数}
+
+系统的状态是它所有性质的总体表现。状态确定后，系统的所有的性质也就确定了。也就是说系统的各种性质与达到此状态的路径无关。因此，各种性质均为状态的函数，称为状态函数。之前我们介绍过的理想气体方程$pV=nRT$，当$p, \ V$确定了以后，系统的温度$T$也随之确定下来，反之亦然，因此$p, \ V, \ T$都是状态函数。
+
+对于一定量纯物质组成的单相系统，在除压力外没有其他力的条件下，只需要给定任意两个独立变量，即可确定系统的状态。因此状态函数可以写成$Z=f(x,y)$。
+
+状态函数有两个重要的特征：
+
+（1）状态确定时，状态函数$Z$有一定的数值；状态变化时，状态函数的变化值$\Delta Z$只由系统始态和终态决定，与变化的具体历程无关。
+
+（2）从数学上看，状态函数的微分具有全微分的特性，全微分的积分与积分途径无关。
+\begin{equation}
+	\begin{aligned}
+		\mathrm{d}Z &= \left ( \frac{\partial Z}{\partial x}  \right )_y\mathrm{d}x+ \left ( \frac{\partial Z}{\partial y}  \right )_x\mathrm{d}y \\[1.5ex]
+		\Delta Z &= \int_{z_1}^{z_2} \mathrm{d}Z=\int_{x_1}^{x_2}  \left ( \frac{\partial Z}{\partial x}  \right )_y\mathrm{d}x+\int_{y_1}^{y_2}  \left ( \frac{\partial Z}{\partial y}  \right )_x\mathrm{d}y
+	\end{aligned} \notag
+\end{equation}
+
+\subsection{热力学第一定律的数学表达}
+
+\textbf{1. 热和功}
+
+热和功是系统与环境之间交换能力的两种形式。
+
+（1）\textbf{热} \quad 系统与环境之间因温度差异而传递的能量称为热，用符号$Q$表示，单位为 J。热不是状态函数，与过程有关。
+
+（2）\textbf{功} \quad 系统与环境之间传递的除了热以外的其他形式的能量统称为功，用符号$W$表示，单位为 J。功也不是状态函数，也与过程有关。
+
+在化学反应中最常见的是体积的改变，所以体积功是经常遇到的情况，体积功又叫膨胀功。功可分为膨胀功和非膨胀功，用符号表示为
+$$
+\mathrm{\delta} W=\mathrm{\delta} W_\mathrm{e} + \mathrm{\delta} W_\mathrm{f}
+$$
+
+\textbf{2. 热力学能}
+
+除了系统整体动能、整体势能以外的系统内部所有粒子全部能量的总和，称为热力学能，用符号$U$表示。当系统的物质种类、数量及组成一定时，$U=f(T,V)$，$T$与分子动能有关，而$V$与势能有关。其全微分式为
+\begin{equation}
+	\mathrm{d}U=\left ( \frac{\partial U}{\partial V}  \right )_T\mathrm{d}V+ \left ( \frac{\partial U}{\partial T}  \right )_V\mathrm{d}T
+\end{equation}
+
+对于理想气体的热力学能只是温度的函数，$U=f(T)$，因此无论一个理想气体的变化是怎么样的，只要其温度没有改变，其热力学能的改变量就为零。
+
+\begin{theorem}{热力学第一定律}
+	在总的能量不变的前提下，热力学能、热和功之间可以相互转化，是能量守恒定律的体现。
+	\begin{equation}
+		\Delta U = W+Q
+	\end{equation}
+
+热力学第一定律也可以表述为：第一类永动机是无法造成的。但是需要注意的是，热力学第一定律的基本要求是：系统是封闭系统。
+\end{theorem}
+
+系统吸热，$Q$取正值，系统放热，$Q$取负值；系统对环境做功，$W$取负值，环境对系统做功，$W$取正值。
+
+\subsection{可逆过程}
+系统经过某一过程从状态（1）到状态（2）后，如果能使系统和环境都恢复到原来的状态而未留下任何永久性的变化，则该过程称为热力学可逆过程。准静态过程是一种可逆过程。可以过程有以下几种特点：
+
+（1）状态变化时推动力与阻力相差无限小，系统始终接近于平衡态；
+
+（2）过程中任何一个中间态都可以从正、逆两个方向到达；
+
+（3）系统变化一个循环后，系统和环境均恢复原态，变化过程中无任何耗散效应；
+
+（4）恒温可逆过程中，系统对环境做最大功，环境对系统做最小功。
+
+\section{焓和热容}
+
+\subsection{焓}
+根据封闭系统的热力学第一定律，在没有非膨胀功的存在下，有以下关系
+$$
+\mathrm{d}U=\delta Q+ \delta W = \delta Q + \delta W_e
+$$
+当恒压时，$\mathrm{d}p=0$，$\delta W_e = -p\mathrm{d}V$，所以
+$$
+\delta Q_p = \mathrm{d}U + p\mathrm{d}V = \mathrm{d}(U+pV)
+$$
+
+将$U+pV$合并起来考虑，其数值也只由系统的状态决定，是一种状态函数，这种状态函数定义为焓，用符号$H$表示，单位为 J。
+\begin{equation}
+	H=U+pV
+\end{equation}
+
+根据定义式，当系统在恒压条件下且不做非膨胀功的条件下，系统的焓变等于等压热效应。
+\begin{equation}
+	\Delta H = Q_p
+\end{equation}
+
+如果恒容且不做非膨胀功的条件下，即$\delta W_e =0$时，系统的热力学能的变化等于恒容热效应。
+\begin{equation}
+	\Delta U = Q_V
+\end{equation}
+
+对于焓的理解需要注意以下几个方面：
+
+（1）$Q_V, \ Q_p$与$\Delta U, \ \Delta H$只是在特点条件下的数值上有联系，不是概念上的等同；
+
+（2）$U, \ H$是系统的状态性质，系统无论发生什么过程都有$\Delta U, \ \Delta H$，而不是恒容、恒压过程才有$\Delta U, \ \Delta H$，只不过恒容、恒压条件下可以用$Q_V, \ Q_p$来计算；
+
+（3）这种关系是相互的，可由$Q_V, \ Q_p$求$\Delta U, \ \Delta H$，反之亦然；
+
+（4）焓不是具有明确意义的能量，虽然具有能量的单位；
+
+（5）理想气体的焓是温度的函数，$H=f(T)$；
+
+（6）当不同的途径均满足恒容非膨胀功为零或恒压非膨胀功为零的特定条件时，不同途径的热已经分别与过程的热力学能变、焓变相等，故不同途径的恒容热相等，不同途径的恒压热也相等，而不再与途径有关，但是它们任然不是状态函数。
+
+\subsection{热容}
+
+对于不发生相变和化学变化的均相封闭系统，不做非膨胀功，系统升高单位热力学温度时所吸收的热，用符号$C$表示单位是$\mathrm{J \cdot K^{-1}}$。
+
+热容的定义为
+\begin{equation}
+	C(T)=\frac{\delta Q}{\mathrm{d}T}
+\end{equation}
+
+摩尔热容的定义为
+\begin{equation}
+	C_{\mathrm{m}}(T)=\frac{C(T)}{n}=\frac{1}{n}\frac{\delta Q}{\mathrm{d}T}
+\end{equation}
+
+摩尔热容单位为$\mathrm{J \cdot mol^{-1} \cdot K^{-1}}$。在恒压过程中的热容称为定压热容，在恒容过程中的热容称为定容热容。相应的有摩尔定压热容和摩尔定容热容：
+\begin{equation}
+	C_{p,\mathrm{m}}(T)=\frac{C_p(T)}{n}=\frac{1}{n}\frac{\delta Q_p}{\mathrm{d}T}
+\end{equation}
+\begin{equation}
+	C_{V,\mathrm{m}}(T)=\frac{C_V(T)}{n}=\frac{1}{n}\frac{\delta Q_V}{\mathrm{d}T}
+\end{equation}
+
+对于无相变化、无化学变化、不做非膨胀功的封闭系统的过程中，有如下关系：
+
+\begin{equation}
+	C_p(T)=\frac{ \delta Q_p }{\mathrm{d}T } =\left ( \frac{\partial H}{\partial T}  \right )_p
+\end{equation}
+\begin{equation}
+	C_V(T)=\frac{ \delta Q_V }{\mathrm{d}T } =\left ( \frac{\partial U}{\partial T}  \right )_V
+\end{equation}
+\begin{equation}
+	\Delta H=Q_p=\int C_p\mathrm{d}T=\int nC_{p,\mathrm{m} }(T)\mathrm{d}T 
+\end{equation}
+\begin{equation}
+	\Delta U=Q_V=\int C_V\mathrm{d}T=\int nC_{V,\mathrm{m} }(T)\mathrm{d}T 
+\end{equation}
+
+热容是一个温度的函数，因此温度不同时，热容也会不同。在处理问题时常常将热容看作是一个常数，比如理想气体的热容，理想单原子气体分子的$C_{V,\mathrm{m}}=1.5R$，理想双原子气体分子的$C_{p,\mathrm{m}}=2.5R$。
+
+\section{热力学第一定律对理想气体的应用}
+\subsection{Gay-Lussac-Joule 实验}
+这个实验得到了一个对于理想气体至关重要的结论。
+\begin{theorem}{Joule 定律}
+	对于理想气体来说，其热力学能仅是温度的函数，与体积和压力无关，即$U=f(T)$。即理想气体满足下式：
+	\begin{equation}
+		\left ( \frac{\partial U}{\partial V}  \right )_T=0
+	\end{equation}
+\end{theorem}
+
+\subsection{理想气体的焓}
+理想气体的焓也仅仅是温度的函数，与体积和压力无关，即
+\begin{equation}
+	\left ( \frac{\partial H}{\partial p}  \right )_T=0
+\end{equation}
+
+之前我们讲述了无相变化、无化学变化、无非膨胀功做功的情况下热容与焓变与热力学能变之间的关系。理想气体同样在恒容不做非膨胀功的条件下，有
+\begin{equation}
+	\Delta U=Q_V=\int C_V \mathrm{d}T
+\end{equation}
+
+理想气体在恒压不做非膨胀功的条件下，有
+\begin{equation}
+	\Delta H=Q_p=\int C_p \mathrm{d}T
+\end{equation}
+
+所以理想气体的恒容热容和恒压热容也仅仅是温度的函数，与体积和压力无关。
+
+\subsection{理想气体的$C_p$与$C_V$之差}
+对于一般的封闭系统，有
+\begin{equation}
+	\begin{aligned}
+		C_p-C_V &= \left ( \frac{\partial H}{\partial T}  \right )_p- \left ( \frac{\partial U}{\partial T}  \right )_V=\left [ \frac{\partial (U+pV)}{\partial T}  \right ]_p- \left ( \frac{\partial U}{\partial T}  \right )_V \\[1.5ex]
+		&= \left ( \frac{\partial U}{\partial T}  \right )_p+p\left ( \frac{\partial V}{\partial T}  \right )_p-\left ( \frac{\partial U}{\partial T}  \right )_V
+	\end{aligned}
+\end{equation}
+
+因为$U$是$T, \ V$的函数，即$U=f(T,V)$，将复合函数的偏微分公式：
+\begin{equation}
+	\left ( \frac{\partial U}{\partial T}  \right )_p = \left ( \frac{\partial U}{\partial T}  \right )_V+\left ( \frac{\partial U}{\partial V}  \right )_T \left ( \frac{\partial V}{\partial T}  \right )_p
+\end{equation}
+
+带入式（3.18）中，得
+\begin{equation}
+	C_p-C_V= \left ( \frac{\partial U}{\partial V}  \right )_T \left ( \frac{\partial V}{\partial T}  \right )_p+p\left ( \frac{\partial V}{\partial T}  \right )_p=\left [ p+\left ( \frac{\partial U}{\partial V}  \right )_T \right ] \left ( \frac{\partial V}{\partial T}  \right )_p
+\end{equation}
+
+式（3.20）就是一般真实气体的$C_p$与$C_V$之差，如果对于理想气体来说需要满足Joule定律和理想气体方程，所以理想气体的$C_p$与$C_V$之差为
+\begin{equation}
+	C_p-C_V=nR
+\end{equation}
+
+式（3.20）经常考察其证明过程，而式（3.21）是学习热力学必须掌握的公式之一，是每年考试必考的知识点。
+
+\subsection{绝热方程式与绝热功的计算}
+在绝热系统中发生的过程称为绝热过程。在绝热过程中，系统与环境间没有热的交换，但可以有功的交换。气体若在绝热的情况下膨胀，由于不能从环境中吸热，对外做功所消耗的能量不能得到补偿，只能降低自身的热力学能，于是系统的温度必然有所降低。
+
+对于理想气体来说，如果经过一个绝热过程，其满足绝热方程式
+\begin{equation}
+	\begin{aligned}
+		K_1 &=  TV^{\gamma -1}  \\[1.5ex]
+		K_2 &=  pV^{\gamma}  \\[1.5ex]
+		K_3 &= p^{1-\gamma}T^{\gamma} 
+	\end{aligned}
+\end{equation}
+
+式（3.22）中，$K_1,\ K_2,\ K_3$都是一个常数，$\gamma$是热容比，其定义为
+\begin{equation}
+	\gamma = \frac{C_p}{C_V}
+\end{equation}
+
+实际考试中，可以任选其一背诵，其余两个公式都可以通过某一个公式利用理想气体方程推导出来。通过理想气体的绝热方程，可以计算出理想气体绝热可逆过程中的功。
+\begin{equation}
+	W =\frac{p_2V_2-p_1V_1}{\gamma -1} = \frac{nR(T_2-T_1)}{\gamma -1}
+\end{equation}
+
+那么对于绝热不可逆过程，则有
+\begin{equation}
+	W=C_V(T_2-T_1)=nC_{V,\mathrm{m}}(T_2-T_1)
+\end{equation}
+
+因为计算过程中没有引入其他任何限制条件，所以式（3.25）可以适用于组成一定的封闭系统的任意一个绝热过程，可逆过程和不可逆过程都可以使用。
+
+\subsection{Carnot 循环和热机效率}
+Carnot循环是一个可逆的循环，一共经历四个可逆过程回到始态。它们分别是：（1）\textbf{恒温可逆膨胀}；（2）\textbf{绝热可逆膨胀}；（3）\textbf{恒温可逆压缩}；（4）\textbf{绝热可逆压缩}。
+
+Carnot热机中有一个重要概念，即热机效率，其是指热机所做的功与所吸收的热之比，用符号$\eta$表示。其热机效率不与热机中是不是理想气体有关，只与两个热源的温度有关，温差越大，热机效率越高。
+\begin{equation}
+	\eta = \frac{-W}{Q_\mathrm{h}}=1-\frac{T_\mathrm{c}}{T_\mathrm{h}} = 1+\frac{Q_\mathrm{c}}{Q_\mathrm{h}}
+\end{equation}
+
+\section{实际气体的 Joule-Thomson 效应}
+\subsection{节流膨胀过程}
+节流膨胀过程是一种在绝热情况下，气体始态和终态压力分别保持恒定的膨胀过程。室温常压下的多数气体，经节流膨胀后温度下降，而氢气、氦气等少数气体经节流膨胀后温度升高，产生致热效应。节流过程是一个等焓、绝热的过程。因此实际气体的焓不仅仅是温度的函数，还是压力的函数。
+
+\subsection{Joule-Thomson 系数}
+气体节流膨胀后的制冷或致热能力也反映在温度差与压力差之比，在此定义：
+\begin{equation}
+	\mu_{\mathrm{J-T}} = \left ( \frac{\partial T}{\partial p}  \right )_H
+\end{equation}
+
+$\mu_\mathrm{J-T}$称为Joule-Thomson系数或者是节流膨胀系数，它表示经节流过程后，气体温度随压力的变化率。$\mu_\mathrm{J-T}$是系统的强度性质，与系统的其他强度性质一样，它是$T$和$p$的函数。
+
+因为节流过程的$\mathrm{d}p<0$，所以根据Joule-Thomson系数的正负，可以知道气体经过节流膨胀后，气体温度的变化。理想气体在任何状态下节流膨胀过程都有$\mu_\mathrm{J-T}=0$。
+
+\subsection{决定$\mu_\mathrm{J-T}$数值因素的分析}
+对于定量气体，焓是状态函数，是温度和压力的函数，即$H=f(T,p)$其全微分为
+$$
+\mathrm{d}H=\left ( \frac{\partial H}{\partial T}  \right )_p\mathrm{d}T+\left ( \frac{\partial H}{\partial p}  \right )_T\mathrm{d}p  
+$$
+
+Joule-Thomson节流过程属于等焓过程，故$\mathrm{d}H=0$，所以上式可写成为
+$$
+\left ( \frac{\partial T}{\partial p}  \right )_H=-\frac{\left (\displaystyle  \frac{\partial H}{\partial p}  \right )_T }{\left (\displaystyle  \frac{\partial H}{\partial T}  \right )_p } 
+$$
+
+整理得到
+\begin{equation}
+	\mu_{\mathrm{J-T}} = -\frac{\left [ \displaystyle \frac{\partial (U+pV)}{\partial p}  \right ]_T }{C_p} =\left [ -\frac{1}{C_p}\left ( \frac{\partial U}{\partial p}  \right )_T \right ] +\left \{ -\frac{1}{C_p} \left [ \frac{\partial (pV)}{\partial p}   \right ]_T  \right \} 
+\end{equation}
+
+由于理想气体的热力学能只是温度的函数，因此式（3.28）第一项为零；又因为恒温时理想气体的$pV$为常数，所以第二项也为零。因此理想气体的$\mu_{\mathrm{J-T}}$为零。
+
+对于实际气体来说，其热力学能不仅仅是温度的函数，也与体积和压力有关；恒温时，压力升高，热力学能有下降的趋势，因此总有
+\begin{equation}
+	\left [ -\frac{1}{C_p}\left ( \frac{\partial U}{\partial p}  \right )_T \right ] \geqslant 0
+\end{equation}
+
+实际气体的第二项，可正可负，由气体的自身性质决定。
+
+\section{热化学}
+\subsection{热效应}
+当系统发生反应后，使产物温度回到反应前始态时的温度，系统放出的热量，称为该反应的热效应。在之前我们已经了解了恒容热效应$Q_V$和恒压热效应$Q_p$，其分别等于该反应的热力学能变$\Delta_\mathrm{r}U$和焓变$\Delta_\mathrm{r}H$。对于理想气体，存在下面关系
+\begin{equation}
+	\Delta_\mathrm{r}H=\Delta_\mathrm{r}U+\Delta(RT)
+\end{equation}
+
+\subsection{标准摩尔焓变}
+由于热力学函数的绝对值经常是未知的，我们只能测量该系统由于条件变化发生时所引起的变化数值。因此我们需要人为的为它们选择一个基线，这就是标准态。
+
+目前来说，标准压力$p^\ominus = 100$ kPa。气体的标准态为：温度为$T$，压力$p^\ominus$时且具有理想气体性质的状态。液体的标准态为：温度为$T$，压力$p^\ominus$的纯液体。固体的标准态为：温度为$T$，压力$p^\ominus$的纯固体。标准态不规定温度，与研究系统的温度相同。
+
+若参加反应的物质都处于标准态，反应进度为1 mol时发生反应的焓变，称为标准摩尔焓变，用符号$\Delta_{\mathrm{r}}H^{\ominus}_{\mathrm{m}}(T)$表示，单位为$\mathrm{J \cdot mol^{-1}}$。
+
+表示化学反应与热效应关系的方程式称为热化学方程式。在方程式中必须标注物质的物态、温度、压力、组成等，对于固态物质还应该标注结晶状态。
+
+\subsection{Hess 定律}
+\begin{theorem}{Hess 定律}
+	在保持反应条件（如温度、压力）不变的情况下，一确定的化学反应，不管反应是一步完成还是分几步完成，其热效应相同，反应的热效应只与始态和终态有关，与变化途径无关。
+\end{theorem}
+
+\subsection{几种热效应}
+\textbf{1. 标准摩尔生成焓}
+
+（1）\textbf{化合物的标准摩尔生成焓} \quad 在标准压力下，一定反应温度$T$时，由最稳定的单质合成标准状态下$\nu_\mathrm{B}=1$的纯物质B，反应进度为1 mol时的焓变称为物质B的标准摩尔生成焓，用符号$\Delta_\mathrm{r}H^\ominus_\mathrm{m}$表示。需要说明的是碳的稳定单质为石墨，硫的稳定单质为正交硫，磷的稳定单质为白磷。
+
+（2）\textbf{离子的标准摩尔生成焓} \quad 在标准压力下，在无限稀释的水溶液中，$\ce{H+}$的标准摩尔生成焓总为零。
+
+根据状态函数的性质，一个反应的标准摩尔焓变可以用标准摩尔生成焓来计算：
+\begin{equation}
+	\Delta_\mathrm{r}H^\ominus _\mathrm{m}=\sum \nu _\mathrm{B}\Delta _\mathrm{f}H^\ominus _\mathrm{m}(\mathrm{B} )     
+\end{equation}
+
+\textbf{2. 标准摩尔燃烧焓}
+
+在标准压力下，反应温度$T$时，由化学计量数$\nu_\mathrm{B}=-1$的物质B完全燃烧，反应进度为1 mol的标准摩尔焓变称为物质B的标准摩尔燃烧焓，用符号$\Delta_\mathrm{c}H^\ominus_\mathrm{m}$表示。完全燃烧产物通常规定为
+$$\ce{C -> CO2(g)}$$
+$$\ce{H -> H2O(l)}$$
+$$\ce{S -> SO2(g)}$$
+$$\ce{N -> N2(g)}$$
+$$\ce{Cl -> HCl(aq)}$$
+
+在任何温度$T$时，完全燃烧产物的标准摩尔燃烧焓为零，氧气是助燃剂，其标准摩尔燃烧焓也为零。通过标准摩尔燃烧焓也能计算一个反应的标准摩尔焓变：
+\begin{equation}
+	\Delta_\mathrm{r}H^\ominus _\mathrm{m}=-\sum \nu _\mathrm{B}\Delta _\mathrm{c}H^\ominus _\mathrm{m}(\mathrm{B} )     
+\end{equation}
+
+\subsection{Kirchhoff 定律}
+\begin{theorem}{Kirchhoff 定律}
+	反应的焓变一般与温度关系不大，但是如果温度区间较大，其焓变随温度的变化而变化，其数值上满足：
+	\begin{equation}
+		\Delta_\mathrm{r}  H_\mathrm{m}(T_2)= \Delta_\mathrm{r}  H_\mathrm{m}(T_1)+\int_{T_1}^{T_2}\Delta C_{p,\mathrm{m} } \mathrm{d}T 
+	\end{equation}
+\end{theorem}
+
+式（3.33）中的$\Delta C_{p,\mathrm{m} }$可以表示为：
+\begin{equation}
+	\Delta C_{p,\mathrm{m} }=\sum \nu_\mathrm{B} C_{p,\mathrm{m} }(\mathrm{B})
+\end{equation}
+
+\subsection{绝热反应}
+对于一个绝热系统来说，在反应过程中所释放或吸收的热量不能够及时的与环境进行交换，因此系统的温度将发生变化。在无其他功的情况下，燃烧和爆炸通常可以近似的看作绝热反应进行处理。
+
+\section{热力学第二定律}
+\subsection{自发过程的特征}
+自发过程指的是某种变化有自动发生的趋势，一旦发生就无需借助外力进行的过程。自发过程是不可逆的，即任何自发变化的逆过程是不能够自动进行的。
+
+\subsection{Carnot 定理}
+\begin{theorem}{Carnot 定理}
+	所有工作于同温热源和同温冷源之间的热机，其效率不可能超过可逆热机。并且所有工作于同温热源和同温冷源之间的可逆热机的效率相等，与工作物质无关。
+\end{theorem}
+
+\subsection{熵的概念}
+由Carnot循环我们可以推导出，任意的可逆循环的热温商之和为零。
+\begin{equation}
+	\oint \left ( \frac{\delta Q}{T}  \right ) _\mathrm{R} =0
+\end{equation}
+
+将式（3.35）分为两式的加和，并移项
+\begin{equation}
+	\begin{aligned}
+		\int_{A}^{B} \left ( \frac{\delta Q}{T}  \right )_{\mathrm{R_1} }+\int_{B}^{A} \left ( \frac{\delta Q}{T}  \right )_{\mathrm{R_2} } =0 \\[1.5ex]
+		\int_{A}^{B} \left ( \frac{\delta Q}{T}  \right )_{\mathrm{R_1} } =\int_{A}^{B} \left ( \frac{\delta Q}{T}  \right )_{\mathrm{R_2} }
+	\end{aligned} \notag
+\end{equation}
+
+这说明任意可逆过程的热温商的值决定于始态和终态，而与路径无关，这个热温商具有状态函数的性质。因此，定义熵来代表可逆过程的热温商，用符号$S$表示，单位为$\mathrm{J \cdot K^{-1}}$。对于微小变化的熵，有
+\begin{equation}
+	\mathrm{d}S=\left ( \frac{\delta Q}{T}  \right )_{\mathrm{R} }  
+\end{equation}
+
+\subsection{Clausius 不等式与热力学第二定律}
+\begin{theorem}{热力学第二定律}
+	Clausius说法：不可能把热从低温物体传到高温物体，而不引起其他变化。
+	
+	Kelvin说法：不可能从单一热源吸取热使之完全变为功，而不发生其他的变化。
+	
+	Ostward说法：第二类永动机式不可能造成的。
+\end{theorem}
+
+Clausius不等式是热力学第二定律在数学上的表示方法：
+\begin{equation}
+	\mathrm{d}S-\frac{\delta Q}{T}\geqslant 0 
+\end{equation}
+有且仅有过程为可逆过程时，等号成立。式中的$T$为环境温度。
+
+\subsection{熵增加原理}
+对于绝热封闭的系统$\delta Q=0$，将其应用到Clausius不等式[式（3.37）]中，得到
+\begin{equation}
+	\mathrm{d}S \geqslant 0
+\end{equation}
+
+因此，在绝热条件下，不可能存在熵减小的过程，这就是熵增加原理。如果是一个孤立系统，环境与系统间没有物质交换也没有能量交换，则可以知道一个孤立系统的熵也永远不会减小。
+
+如果我们将环境和系统结合在一起，看作一个孤立的系统，其同样也满足熵增加原理，这种方法称为熵判据：
+\begin{equation}
+	\mathrm{d}S_{\mathrm{tol}} = \mathrm{d}S_{\mathrm{sys}} + \mathrm{d}S_{\mathrm{sur}} \left\{
+	\begin{aligned}
+		&> 0 \qquad \text{自发的不可逆过程} \\
+		&= 0 \qquad \text{可逆过程，直到达到平衡}\\
+		&< 0 \qquad \text{不可能发生这样的过程} 
+	\end{aligned}
+\right.
+\end{equation}
+
+因此我们可以得出一个结论，绝热可逆过程的熵一定是不变的。
+
+\section{物理变化中的熵变计算}
+
+\subsection{恒温过程中的熵变}
+\textbf{1. 理想气体恒温、可逆变化}
+
+理想气体的热力学能只是温度的函数，与体积无关。恒温过程，则
+\begin{equation}
+	\Delta S=\frac{Q_\mathrm{R} }{T}=\frac{-W_\mathrm{max} }{T} =nR\ln \frac{V_2}{V_1}  =nR\ln \frac{p_1}{p_2} 
+\end{equation}
+对于不可逆过程，应该设计一个始态和终态相同的可逆过程，因为熵是状态函数，所以仍然可以用式（3.40）计算熵变。
+
+\textbf{2. 恒温、恒压、可逆相变}
+\begin{equation}
+	\Delta S(\text{相变}) = \frac{\Delta H(\text{相变})}{T(\text{相变})}	
+\end{equation}
+
+\textbf{3. 理想气体（或理想溶液）的恒温混合过程}
+\begin{equation}
+	\Delta _\mathrm{mix}S=-R\sum n_\mathrm{B}\ln x_\mathrm{B}   
+\end{equation}
+
+\subsection{非恒温过程中的熵变}
+\textbf{1. 物质的量一定的可逆、恒容、变温过程}
+\begin{equation}
+	\Delta S=\int_{T_1}^{T_2}\frac{nC_{V,\mathrm{m} }}{T}\mathrm{d}T   
+\end{equation}
+
+\textbf{2. 物质的量一定的可逆、恒压、变温过程}
+\begin{equation}
+	\Delta S=\int_{T_1}^{T_2}\frac{nC_{p,\mathrm{m} }}{T}\mathrm{d}T   
+\end{equation}
+
+\section{Helmholtz 函数和 Gibbs 函数}
+\subsection{Helmholtz 函数}
+定义Helmholtz函数，用符号$A$表示，单位$\mathrm{J}$。
+\begin{equation}
+	A=U-TS
+\end{equation}
+
+在恒温过程中，封闭系统对外所做的功等于或小于系统Helmholtz函数的减少值。
+\begin{equation}
+	-\delta W \leqslant -\mathrm{d}A
+\end{equation}
+
+在恒温可逆过程中，系统对外所作的最大功等于系统Helmholtz函数的减少值。因此在恒温、恒容不做非膨胀功的情况下，自发变化总是朝着Helmholtz函数减少的方向进行的，这就是Helmholtz判据，判断的条件是恒温、恒容且$W_\mathrm{f}=0$。
+\begin{equation}
+	(\mathrm{d}A)_{T,V,W_\mathrm{f}=0} \left\{
+	\begin{aligned}
+		&> 0 \qquad \text{不可能发生这样的过程} \\
+		&= 0 \qquad \text{可逆过程，直到达到平衡}\\
+		&< 0 \qquad \text{自发的不可逆过程} 
+	\end{aligned}
+	\right.
+\end{equation}
+
+\subsection{Gibbs 函数}
+定义Gibbs函数，用符号$G$表示，单位$\mathrm{J}$。
+\begin{equation}
+	G=H-TS
+\end{equation}
+
+在恒温、恒压、可逆过程中，封闭系统对外所作的最大非膨胀功等于系统Gibbs函数的减少值。
+\begin{equation}
+	-\delta W \leqslant -\mathrm{d}G
+\end{equation}
+
+在恒温、恒压且不做非膨胀功的情况下，自发变化总是朝着Gibbs函数减少的方向进行的，这就是Gibbs判据，判断的条件是恒温、恒压且$W_\mathrm{f}=0$。
+\begin{equation}
+	(\mathrm{d}G)_{T,V,W_\mathrm{f}=0} \left\{
+	\begin{aligned}
+		&> 0 \qquad \text{不可能发生这样的过程} \\
+		&= 0 \qquad \text{可逆过程，直到达到平衡}\\
+		&< 0 \qquad \text{自发的不可逆过程} 
+	\end{aligned}
+	\right.
+\end{equation}
+
+由于大多数反应的进行都是在恒温、恒压的条件下进行的，因此Gibbs判据的应用更加的广泛。
+
+\section{$\Delta G$ 的计算}
+\subsection{恒温物理变化}
+
+\textbf{1. 恒温、恒压、可逆相变}
+
+因为相变过程中不做非膨胀功，且为可逆相变，则
+\begin{equation}
+	\Delta G =0
+\end{equation}
+
+\textbf{2. 恒温下的压力，体积变化}
+
+如果不做非膨胀功，则对于任何物质有
+\begin{equation}
+	\Delta G = \int_{p_1}^{p_2} V\mathrm{d}p
+\end{equation}
+
+如果是理想气体
+\begin{equation}
+	\Delta G = nRT\ln \frac{p_2}{p_1}=nRT\ln \frac{V_1}{V_2}
+\end{equation}
+
+\subsection{化学反应中的 $\Delta G$}
+\textbf{1. 定义式计算}
+\begin{equation}
+	\Delta_\mathrm{r}G^\ominus_\mathrm{m} = \Delta_\mathrm{r}H^\ominus_\mathrm{m}-T\Delta_\mathrm{r}S^\ominus_\mathrm{m}
+\end{equation}
+
+\textbf{2. 利用标准摩尔生成 Gibbs 函数计算}
+\begin{equation}
+	\Delta_\mathrm{r}G^\ominus _\mathrm{m}=\sum \nu _\mathrm{B}\Delta _\mathrm{f}G^\ominus _\mathrm{m}(\mathrm{B} )     
+\end{equation}
+
+\textbf{3. 利用电池电动势计算}
+\begin{equation}
+	\Delta_\mathrm{r}G^\ominus _\mathrm{m}=-zE^\ominus F
+\end{equation}
+
+\section{热力学函数之间的关系}
+\subsection{热力学基本方程}
+利用基本的定义式，可以导出以下四个热力学基本方程
+\begin{equation}
+	\begin{aligned}
+		\mathrm{d}U &= T\mathrm{d}S-p\mathrm{d}V \\[1.5ex]
+		\mathrm{d}H &= T\mathrm{d}S+V\mathrm{d}p \\[1.5ex]
+		\mathrm{d}G &= -S\mathrm{d}T+V\mathrm{d}p \\[1.5ex]
+		\mathrm{d}A &= -S\mathrm{d}T-p\mathrm{d}V
+	\end{aligned}	
+\end{equation}
+
+\subsection{Maxwell 关系式}
+将全微分的知识，应用在式（3.56）上，就可以得到Maxwell关系式
+\begin{equation}
+	\begin{aligned}
+		\left ( \frac{\partial T}{\partial V}  \right )_S &= -\left ( \frac{\partial p}{\partial S}  \right )_V \\[1.5ex]
+		\left ( \frac{\partial T}{\partial p}  \right )_S &= \left ( \frac{\partial V}{\partial S}  \right )_p \\[1.5ex]
+		\left ( \frac{\partial S}{\partial V}  \right )_T &= \left ( \frac{\partial p}{\partial T}  \right )_V \\[1.5ex]
+		\left ( \frac{\partial S}{\partial p}  \right )_T &= -\left ( \frac{\partial V}{\partial T}  \right )_p 
+	\end{aligned}
+\end{equation}
+
+得到的Maxwell关系式可以应用在基本方程上得出以下两个方程
+\begin{equation}
+	\begin{aligned}
+		\left ( \frac{\partial U}{\partial V}  \right )_T &= T\left ( \frac{\partial p}{\partial T}  \right )_V-p \\[1.5ex] 
+		\left ( \frac{\partial H}{\partial p}  \right )_T &= V-T\left ( \frac{\partial V}{\partial T}  \right )_p   
+	\end{aligned}
+\end{equation}
+
+\subsection{Gibbs-Helmholtz 方程}
+卵用没有，看看就好。
+\begin{equation}
+	\left [ \frac{\partial (\Delta G/T)}{\partial T}  \right ]_p=-\frac{\Delta H}{T^2} 
+\end{equation}
+
+\section{热力学第三定律}
+\subsection{热力学第三定律的表述}
+\begin{theorem}[热力学第三定律]
+	在0 K时，任何完美晶体（只有一种排列方式）的熵等于零。因此熵不会存在负值。
+	\begin{equation}
+		\lim_{T \to 0 \ K}S=0 
+	\end{equation}
+\end{theorem}
+
+\subsection{化学反应的熵变计算}
+在标准状态下，温度$T$时的规定熵，则称为该物质在$T$时的标准熵，符号为$S^\ominus$。
+
+（1）在标准压力下、298.15 K时，各物质的标准摩尔熵可以计算反应的熵变。
+
+（2）在标准压力下、反应温度$T$时的熵变可以由下式计算：
+\begin{equation}
+	\Delta_\mathrm{r}S^\ominus_\mathrm{m}(T) = \Delta_\mathrm{r}S^\ominus_\mathrm{m}(298.15 \ \mathrm{K} ) + \int_{298.15 \ \mathrm{K} }^{T}\frac{\sum \nu _\mathrm{B}C_{p,\mathrm{m}}(\mathrm{B} ) \mathrm{d}T }{T}  
+\end{equation}
+
+（3）在298.15 K、反应压力为$p$时的熵变值可以由下式求得：
+\begin{equation}
+	\Delta _\mathrm{r}S_\mathrm{m}(p)= \Delta _\mathrm{r}S^\ominus _\mathrm{m}(p^\ominus )
+	+\int_{p^\ominus }^{p}-\left ( \frac{\partial V_\mathrm{m} }{\partial T}  \right )_p\mathrm{d}p 
+\end{equation}
+
+（4）从可逆电池的热效应或从电动势的温度系数求出反应的熵变：
+\begin{equation}
+	\Delta _\mathrm{r} S_\mathrm{m}=\frac{Q_\mathrm{R} }{T}  
+\end{equation}
+\begin{equation}
+	\Delta _\mathrm{r} S_\mathrm{m}=zF\left ( \frac{\partial E}{\partial T}  \right )_p
+\end{equation}
+
+\chapter{多组分与相平衡}
+\section{偏摩尔量}
+\subsection{偏摩尔量的定义}
+设系统中有$k$个组分，系统中任一广度量$V,U,H,S,A$和$G$（用符号$Z$表示）除了与温度、压力有关外，还与各组分的数量有关，即
+\begin{equation}
+	Z=Z(T,p,n_1,n_2,\cdots,n_k)
+\end{equation}
+
+偏摩尔量的定义为
+\begin{equation}
+	Z_\mathrm{B} = \left(\frac{\partial Z}{\partial n_\mathrm{B}}\right)_{T,p,n_{\mathrm{C}(\mathrm{C \ne B})}} 
+\end{equation}
+
+常见的偏摩尔量是偏摩尔体积$V_\mathrm{B}$和偏摩尔Gibbs自由能$G_\mathrm{B}$
+\begin{equation}
+	V_\mathrm{B}=\left ( \frac{\partial V}{\partial n_\mathrm{B} }  \right )_{T,p,n_{\mathrm{C}(\mathrm{C \ne B})}}   
+\end{equation}
+\begin{equation}
+	G_\mathrm{B}=\left ( \frac{\partial G}{\partial n_\mathrm{B} }  \right )_{T,p,n_{\mathrm{C}(\mathrm{C \ne B})}}   
+\end{equation}
+
+需要注意的是偏摩尔量的含义是在恒温、恒压条件下，在大量的定组成系统中，加入单位物质的量的物质B所引起的广度性质$Z$的变化率。
+
+并且，只有广度性质才有偏摩尔量，但偏摩尔量是强度性质。任何偏摩尔量都是$T,p$和组成的函数。纯物质的偏摩尔量就是它的摩尔量。
+
+\subsection{偏摩尔量的性质和关系}
+\textbf{1. 偏摩尔量的加和公式}
+
+如果在溶液中按比例地添加各组分，则溶液浓度不会发生改变，这时各组分的偏摩尔量不会改变。此时有
+\begin{equation}
+	Z = Z_1n_1+Z_2n_2+\cdots+Z_kn_k
+\end{equation}
+式（4.5）就是偏摩尔量的加和公式，它说明系统总的容量性质等于各组分偏摩尔量与物质的量的乘积之和。如果只有两个组分，则系统的总体积$V=V_1n_1+V_2n_2$。
+
+\textbf{2. Gibbs-Duhem 公式}
+
+如果在溶液中不按比例地添加各组分，则溶液浓度会发生改变，这时各组分的物质的量和偏摩尔量均会改变。
+\begin{equation}
+	n_1\mathrm{d}Z_1+n_2\mathrm{d}Z_2+\cdots +n_k\mathrm{d}Z_k=\sum n_\mathrm{B}\mathrm{dZ_\mathrm{B} }=0    
+\end{equation}
+式（4.6）称为Gibbs-Duhem公式，说明偏摩尔量之间是有一定联系的。某一偏摩尔量的变化可以从其他偏摩尔量的变化中求得。
+
+\section{化学势}
+\subsection{化学势的定义}
+广义化学势的定义为
+\begin{equation}
+	\mu _\mathrm{B}=\left ( \frac{\partial H}{\partial n_\mathrm{B} }  \right )_{S,p,n_{\mathrm{C}\ne\mathrm{B}  }} =\left ( \frac{\partial A}{\partial n_\mathrm{B} }  \right )_{T,V,n_{\mathrm{C}\ne\mathrm{B}  }} = \left ( \frac{\partial U}{\partial n_\mathrm{B} }  \right )_{S,V,n_{\mathrm{C}\ne\mathrm{B}  }} = \left ( \frac{\partial G}{\partial n_\mathrm{B} }  \right )_{T,p,n_{\mathrm{C}\ne\mathrm{B}  }}
+\end{equation}
+即保持热力学函数的特征变量和除B以外其他组分不变，某热力学函数随物质的量的变化率称为化学势。狭义的化学势则指的是偏摩尔Gibbs自由能，如果不格外说明，化学势就是偏摩尔Gibbs自由能。
+\begin{equation}
+	\mu _\mathrm{B}=\left ( \frac{\partial G}{\partial n_\mathrm{B} }  \right )_{T,p,n_{\mathrm{C}\ne\mathrm{B}  }}
+\end{equation}
+
+\subsection{化学势在相平衡中的作用}
+设系统有$\alpha$和$\beta$两相，在恒温、恒压下，组分B在$\alpha,\beta$两相中平衡的条件是
+\begin{equation}
+	\mu^\alpha_\mathrm{B} = \mu^\beta_\mathrm{B}
+\end{equation}
+
+如果组分B在$\alpha,\beta$两相中的转移是自发的，则自发变化的方向是组分B从化学势高的一相转移到化学势低的一相。
+
+\section{气体混合物中各组分的化学势}
+\subsection{理想气体及其混合物的化学势}
+对于一种理想气体，其化学势的表达式为：
+\begin{equation}
+	\mu (T,p)-\mu ^\ominus (T)=RT\ln \frac{p}{p^\ominus } 
+\end{equation}
+
+对于理想气体的混合物来说，组分B的化学势的表达式为：
+\begin{equation}
+	\mu _\mathrm{B}=\mu ^\ominus _\mathrm{B}+RT\ln \frac{p_\mathrm{B} }{p^\ominus }   
+\end{equation}
+
+对于理想气体混合物，将Dalton定律带入式（4.11）中，得
+\begin{equation}
+	\begin{aligned}
+		\mu_\mathrm{B}(T,p) &=\mu^\ominus_\mathrm{B}(T)+RT\ln \frac{p}{p^\ominus}+RT\ln x_\mathrm{B} \\
+		&= \mu^*_\mathrm{B}(T,p)+RT\ln x_\mathrm{B}
+	\end{aligned}
+\end{equation}
+
+\subsection{非理想气体的化学势}
+
+对于非理想气体，其对数项中的压力需要矫正。
+\begin{equation}
+	\begin{aligned}
+		\mu(T,p) &=\mu^\ominus(T)+RT\ln \left(\frac{\varphi p}{p^\ominus}\right) \\
+		&= \mu^\ominus(T)+RT \ln \frac{f}{p^\ominus}
+	\end{aligned}
+\end{equation}
+式中$f$称为逸度，可以看作为有效压力，即校正到符合理想气体化学势表达式的那部分压力。令$f=\varphi p$，$\varphi$称为逸度因子。
+
+同样，对于实际气体的混合物，也可以用类似的关系式来表示。
+\begin{equation}
+	\begin{aligned}
+		\mu_\mathrm{B}(T,p) &=\mu_\mathrm{B}^\ominus(T)+RT\ln \left(\frac{\varphi p_\mathrm{B}}{p^\ominus}\right) \\
+		&= \mu_\mathrm{B}^\ominus(T)+RT \ln \frac{f_\mathrm{B}}{p^\ominus}
+	\end{aligned}
+\end{equation}
+
+需要注意的是，无论是纯实际气体还是气体混合物，都是采用$p^\ominus$下的理想气体作为它们的标准态，它是一个假想的状态，因为在$p^\ominus$下的实际气体未必有理想气体的行为。
+
+\section{Raoult 定律和 Henry 定律}
+\subsection{Raoult 定律}
+\begin{theorem}{Raoult 定律}
+	在一定的温度下，在稀溶液中，溶剂的蒸气压等于纯溶剂的蒸气压$p^*_\mathrm{A}$乘以溶液中溶剂的摩尔分数$x_\mathrm{A}$。
+	\begin{equation}
+		p_\mathrm{A} = p^*_\mathrm{A}x_\mathrm{A}
+	\end{equation}
+
+	如果是非理想系统，Raoult定律应该修正为
+	\begin{equation}
+		p_\mathrm{A} = p^*_\mathrm{A}a_\mathrm{A} = p^*_\mathrm{A} \gamma_\mathrm{A}x_\mathrm{A}
+	\end{equation}
+式中的$a_\mathrm{A}$为A组分的活度，相当于将浓度做了校正处理。
+\end{theorem}
+
+\subsection{Henry 定律}
+\begin{theorem}{Henry 定律}
+	在一定温度和平衡状态下，气体在液体中的溶解度与该气体的平衡分压成正比。
+	\begin{equation}
+		p_\mathrm{B} = k_\mathrm{B}x_\mathrm{B}
+	\end{equation}
+式中的$k_\mathrm{B}$称为Henry定律常数，其数值与温度、压力和溶质的性质有关。对于稀溶液，其物质的量浓度和质量摩尔浓度与摩尔分数可以相互转换：
+	\begin{equation}
+	p_\mathrm{B} = k_\mathrm{B}b_\mathrm{B}
+	\end{equation}
+需要注意的是，如果用不同浓度标志来表示的话，$k_\mathrm{B}$的单位和数值都不相同，在计算时需要注意单位的问题。
+\end{theorem}
+
+使用Henry定律时，有以下要求：
+
+（1）式中的$p_\mathrm{B}$为该气体的分压。
+
+（2）溶质在气相中和在溶液中的分子状态必须相同。
+
+（3）溶液浓度越稀，对Henry定律符合得更好。
+
+\section{理想液态混合物}
+\subsection{理想液态混合物的定义}
+不分溶剂和溶质，任一组分在全部浓度范围内都符合Raoult定律的液态混合物称为理想液态混合物。从分子模型上看，其各组分分子大小和作用力相似，在混合时没有热效应和体积的变化，即$\Delta_\mathrm{mix}H=0,\Delta_\mathrm{mix}V=0$。
+
+\subsection{理想液态混合物中任一组分的化学势}
+在一定温度下，当任一组分B在与其蒸气达到平衡时，假设气相为理想气体，则有
+\begin{equation}
+	\mu_\mathrm{B}(\mathrm{l}) = \mu_\mathrm{B}^\ominus(\mathrm{l},T)+RT\ln x_\mathrm{B}
+\end{equation}
+
+\subsection{理想液态混合物的通性}
+（1）$\Delta_\mathrm{mix} V=0$
+
+（2）$\Delta_\mathrm{mix} H=0$
+
+（3）$\Delta_\mathrm{mix} S=-R \sum n_\mathrm{B}\ln x_\mathrm{B} > 0$，混合熵总是大于零的。
+
+（4）$\Delta_\mathrm{mix} G = RT\sum n_\mathrm{B}\ln x_\mathrm{B} < 0$，混合过程是自发的。
+
+（5）理想液态混合物中Raoult定律和Henry定律是一致的。
+
+\section{理想稀溶液中任一组分的化学势}
+\subsection{理想稀溶液的定义}
+由两个组分组成一溶液，在一定温度和压力下，在一定的浓度范围内，溶剂遵守Raoult定律，溶质遵守Henry定律，这种溶液称为理想稀溶液。
+
+\subsection{溶剂的化学势}
+溶剂服从Raoult定律，一般假定与液体成平衡的气相可以看作理想气体，系统压力与标准压力相差不大。则
+\begin{equation}
+	\begin{aligned}
+		\mu_\mathrm{A}(\mathrm{l}) &= \mu^*_\mathrm{A}(\mathrm{l}) + RT \ln x_\mathrm{A} \\
+		\mu_\mathrm{A}(\mathrm{l}) &= \mu^\ominus _\mathrm{A}(\mathrm{l}) + RT \ln x_\mathrm{A} 
+	\end{aligned}
+\end{equation}
+
+$\mu^*_\mathrm{A}$的物理意义是，在$T,p$时纯溶剂A的化学势，它不是标准态，$\mu^\ominus_\mathrm{A}$是在$T,p^\ominus$时纯溶剂的标准化学势。
+
+\subsection{溶质的化学势}
+
+
+
+\chapter{化学平衡}
+\chapter{电化学}
+\chapter{化学动力学}
+\chapter{表面与胶体化学}
+
+
+
+\end{document}
